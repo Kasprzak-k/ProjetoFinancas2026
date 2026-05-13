@@ -5,9 +5,11 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 
+import java.io.Serializable;
+
 @Data
 @Builder
-public class AssetPositionDto {
+public class AssetPositionDto implements Serializable {
     private String symbol;
     private BigDecimal quantity;
     private BigDecimal avgPrice;
