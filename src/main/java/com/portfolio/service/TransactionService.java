@@ -57,7 +57,7 @@ public class TransactionService {
 
     private void validateSellPosition(Long userId, Long assetId, BigDecimal sellQuantity) {
         List<Transaction> transactions = transactionRepository.findByUserIdOrderByTimestampAsc(userId);
-        
+
         BigDecimal currentQuantity = BigDecimal.ZERO;
         for (Transaction t : transactions) {
             if (t.getAsset().getId().equals(assetId)) {
