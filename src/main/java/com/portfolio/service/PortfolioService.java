@@ -1,5 +1,6 @@
 package com.portfolio.service;
 
+import com.portfolio.domain.AssetType;
 import com.portfolio.domain.Transaction;
 import com.portfolio.domain.TransactionType;
 import com.portfolio.dto.AssetPositionDto;
@@ -34,7 +35,8 @@ public class PortfolioService {
 
         for (Transaction t : transactions) {
             String symbol = t.getAsset().getSymbol();
-            positions.putIfAbsent(symbol, new PositionAccumulator(symbol));
+            AssetType type = t.getAsset().getType();
+            positions.putIfAbsent(symbol, new PositionAccumulator(symbol, type));
             
             PositionAccumulator pos = positions.get(symbol);
             if (t.getType() == TransactionType.BUY) {
@@ -67,6 +69,7 @@ public class PortfolioService {
 
                 assetDtos.add(AssetPositionDto.builder()
                         .symbol(pos.symbol)
+                        .type(pos.type)
                         .quantity(pos.quantity)
                         .avgPrice(pos.avgPrice)
                         .currentPrice(currentPrice)
@@ -85,11 +88,13 @@ public class PortfolioService {
 
     private static class PositionAccumulator {
         String symbol;
+        AssetType type;
         BigDecimal quantity = BigDecimal.ZERO;
         BigDecimal avgPrice = BigDecimal.ZERO;
 
-        PositionAccumulator(String symbol) {
+        PositionAccumulator(String symbol, AssetType type) {
             this.symbol = symbol;
+            this.type = type;
         }
     }
 }
