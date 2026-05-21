@@ -68,12 +68,14 @@ public class TransactionService {
                 }
             }
         }
-        
+
         if (currentQuantity.compareTo(sellQuantity) < 0) {
-            throw new InsufficientPositionException("Cannot sell more than current position. Current: " + currentQuantity);
+            throw new InsufficientPositionException(
+                    "Cannot sell more than current position. Current: " + currentQuantity);
         }
     }
 
+    @Transactional(readOnly = true)
     public List<TransactionResponse> getTransactionsByUser(Long userId) {
         return transactionRepository.findByUserIdOrderByTimestampAsc(userId)
                 .stream()
