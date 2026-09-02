@@ -10,3 +10,5 @@ target/
 *.iml
 *.log
 .env
+PENDENCIAS*.md
+GUIA_INTEGRACAO_APIS.md

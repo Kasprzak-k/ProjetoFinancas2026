@@ -30,7 +30,8 @@ public class DataSeeder implements CommandLineRunner {
                     Asset.builder().symbol("AAPL").type(AssetType.STOCK).build(),
                     Asset.builder().symbol("GOOGL").type(AssetType.STOCK).build(),
                     Asset.builder().symbol("BTC").type(AssetType.CRYPTO).build(),
-                    Asset.builder().symbol("ETH").type(AssetType.CRYPTO).build()
+                    Asset.builder().symbol("ETH").type(AssetType.CRYPTO).build(),
+                    Asset.builder().symbol("SOL").type(AssetType.CRYPTO).build()
             ));
         }
     }

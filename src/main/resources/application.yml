@@ -16,3 +16,10 @@ spring:
       port: ${REDIS_PORT:6379}
 server:
   port: 8080
+
+# Integração com a API pública (keyless) do CoinGecko — Pendência 1.A
+coingecko:
+  api:
+    base-url: ${COINGECKO_BASE_URL:https://api.coingecko.com/api/v3}
+    connect-timeout-ms: ${COINGECKO_CONNECT_TIMEOUT_MS:3000}
+    read-timeout-ms: ${COINGECKO_READ_TIMEOUT_MS:5000}
